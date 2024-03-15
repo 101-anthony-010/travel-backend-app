@@ -30,7 +30,13 @@ exports.CreateCity = catchAsync(async (req, res, next) => {
 });
 
 exports.FindAllCity = catchAsync(async (req, res, next) => {
-  const cities = await City.findAll();
+  const { id } = req.params
+  
+  const cities = await City.findAll({
+    where: {
+      idDepartament: id
+    }
+  });
 
   const citysWithImgUrl = await Promise.all(
     cities.map(async (city) => {
@@ -52,3 +58,4 @@ exports.FindAllCity = catchAsync(async (req, res, next) => {
       data: citysWithImgUrl
     })
 });
+

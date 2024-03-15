@@ -31,7 +31,13 @@ exports.CreateCelebration = catchAsync(async (req, res, next) => {
 });
 
 exports.FindAllCelebrations = catchAsync(async (req, res, next) => {
-  const celebrations = await Celebration.findAll();
+  const { id } = req.params
+  
+  const celebrations = await Celebration.findAll({
+    where: {
+      idDepartament: id
+    }
+  });
 
   const celebrationWithImgUrl = await Promise.all(
     celebrations.map(async (celebration) => {

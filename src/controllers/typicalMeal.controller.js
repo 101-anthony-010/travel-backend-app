@@ -30,8 +30,13 @@ exports.CreateTypicalMeal = catchAsync(async (req, res, next) => {
 });
 
 exports.FindAllTypicalMeals = catchAsync(async (req, res, next) => {
-  const typicalMeals = await TypicalMeals.findAll();
-
+  const { id } = req.params
+  
+  const typicalMeals = await TypicalMeals.findAll({
+    where: {
+      idDepartament: id
+    }
+  });
   const typicalMealsWithImgUrl = await Promise.all(
     typicalMeals.map(async (typicalMeal) => {
       const imgRef = ref(storage, typicalMeal.imgURL);
@@ -42,7 +47,7 @@ exports.FindAllTypicalMeals = catchAsync(async (req, res, next) => {
         name: typicalMeal.name,
         description: typicalMeal.description,
         imgURL: url,
-        idCity: typicalMeal.idCity
+        idDepartament: typicalMeal.idDepartament
       }
     })
     );

@@ -30,7 +30,13 @@ exports.CreateTuristPlace = catchAsync(async (req, res, next) => {
 });
 
 exports.FindAllTuristPlace = catchAsync(async (req, res, next) => {
-  const turistsPlaces = await TuristsPlaces.findAll();
+  const { id } = req.params
+  
+  const turistsPlaces = await TuristsPlaces.findAll({
+    where: {
+      idDepartament: id
+    }
+  });
 
   const turistPlacesWithImgUrl = await Promise.all(
     turistsPlaces.map(async (turistPlace) => {
