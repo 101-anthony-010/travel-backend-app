@@ -9,16 +9,12 @@ const celebrationController = require('./../controllers/celebration.controller')
 //Middleware functions
 
 router
-  .route('/')
-  .get(
-    celebrationController.FindAllCelebrations
-  )
-
-router
   .route('/:id')
   .post(
     upload.single('imgURL'),
     celebrationController.CreateCelebration
   )
-
+  .get(
+    celebrationController.FindAllCelebrations
+  )
 module.exports = router;

@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { db } = require("../database/config");
 
-const Celebration = db.define("celebrationsss", {
+const Celebration = db.define("celebrationoficial", {
   id: {
     primaryKey: true,
     type : DataTypes.INTEGER,
@@ -13,7 +13,7 @@ const Celebration = db.define("celebrationsss", {
     allowNull: false,
   },
   date: {
-    type: DataTypes.TIME,
+    type: DataTypes.DATE,
     allowNull: false,
   },
   description: {
