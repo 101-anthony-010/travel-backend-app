@@ -14,7 +14,7 @@ router.use(authMiddleware.protect)
 router
   .route('/')
   .post(
-    upload.single('imgURL'),
+    upload.single("imgURL"),
     postController.createPost
   )
   .get(

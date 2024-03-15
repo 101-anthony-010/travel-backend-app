@@ -8,7 +8,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
   const { sessionUser } = req;
 
   let imgURL;
-
+  
   if (req.file) {
     const imgRef = ref(storage, `posts/${Date.now()}-${req.file.originalname}`);
     const imgUploaded = await uploadBytes(imgRef, req.file.buffer);
@@ -31,7 +31,11 @@ exports.createPost = catchAsync(async (req, res, next) => {
 exports.findAllPost = catchAsync(async (req, res, next) => {
   const { sessionUser } = req;
 
-  const posts = await Post.find({ userId: sessionUser.id });
+  const posts = await Post.findAll({
+    where: {
+      idUser: sessionUser.id
+    }
+  });
 
   res.status(200).json({
     status: 'success',
