@@ -1,25 +1,21 @@
 const { DataTypes } = require("sequelize");
 const { db } = require("../database/config");
 
-const Post = db.define("posts", {
+const PlaceUser = db.define("placeUser", {
   id: {
-    primaryKey: true,
+    type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
-    type: DataTypes.INTEGER
+    primaryKey: true
   },
-  id_place: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  img_url: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  description: {
+  imgURL: {
     type: DataTypes.STRING,
     allowNull: false,
   }
 })
 
-module.exports = Post;
+module.exports = PlaceUser;
