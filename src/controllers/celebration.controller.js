@@ -21,7 +21,7 @@ exports.CreateCelebration = catchAsync(async (req, res, next) => {
     description,
     imgURL,
     date,
-    idCity: id
+    idDepartament: id
   })
 
   res.status(200).json({
@@ -44,7 +44,7 @@ exports.FindAllCelebrations = catchAsync(async (req, res, next) => {
         description: celebration.description,
         imgURL: url,
         date: celebration.date,
-        idCity: celebration.idCity
+        idDepartament: celebration.idDepartament
       }
     })
     );
